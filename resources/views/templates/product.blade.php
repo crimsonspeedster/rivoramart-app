@@ -183,26 +183,38 @@
                                 </div>
                             @endif
 
-                            @if(!empty($product->categories))
-
+                            @if(!empty($categories))
                                 <div class="my-3 category-tag">
                                     <span class="font-weight-bold text-secondary">Category:</span>
 
-                                    @foreach($product->categories as $index => $category)
-                                        <a href="{{route('slug.resolver', $category->sluggable->slug)}}" class="text-primary ml-1 text-decoration-none ">{{$category->title}}</a>
+                                    @foreach($categories as $index => $category)
+                                        <a href="{{route('slug.resolver', $category->sluggable->slug)}}" class="text-primary ml-1 text-decoration-none ">
+                                            {{$category->title}}
 
-                                        @if($index < count($product->categories) - 1)
-                                            ,
-                                        @endif
+                                            @if($index < count($categories) - 1)
+                                                ,
+                                            @endif
+                                        </a>
                                     @endforeach
                                 </div>
                             @endif
 
-                            <div class="my-3 category-tag">
-                                <span class="font-weight-bold text-secondary">Tags:</span>
-                                <a href="#" class="text-primary ml-1 text-decoration-none ">Women Accessories,</a>
-                                <a href="#" class="text-primary ml-1 text-decoration-none ">Jewellery</a>
-                            </div>
+                            @if(!empty($tags))
+                                <div class="my-3 category-tag">
+                                    <span class="font-weight-bold text-secondary">Tags:</span>
+
+                                    @foreach($tags as $index => $tag)
+                                        <a href="{{route('slug.resolver', $tag->sluggable->slug)}}" class="text-primary ml-1 text-decoration-none ">
+                                            {{$tag->title}}
+
+                                            @if($index < count($tags) - 1)
+                                                ,
+                                            @endif
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endif
+
                             <div class="my-3">
                                 <span class="font-weight-bold text-secondary">Share:</span>
                                 <div class="mt-2 d-flex align-items-center">
@@ -459,89 +471,7 @@
                     </div>
                 </div>
 
-                @php
-                    $reviews = $product->reviews()->published()->get();
-                @endphp
-
-                @if(!empty($reviews))
-                    <div class="row mb-4">
-                        <div class="col-lg-8 mb-4 order-lg-1">
-                            <div>
-                                @foreach($reviews as $review)
-                                    <div class="d-flex align-items-start mt-3">
-                                        <figure class="d-none d-sm-block rounded-circle overflow-hidden shadow-sm"
-                                                style="height: 56px; width: 56px; min-width: 56px;">
-                                            <img class="img-fluid" src="./assets/images/client/1.png" alt="{{$review->user->name}}">
-                                        </figure>
-
-                                        <div class="ms-3">
-                                            <div class="d-flex align-items-center mb-2">
-                                                <span class="font-weight-bold text-primary">{{$review->user->name}}</span>
-
-                                                <span class="text-muted ms-2">· {{ $review->published_at->format('d M. h:ia') }}</span>
-                                            </div>
-
-                                            <p class="mb-2">{{$review->comment}}</p>
-
-{{--                                            <div class="d-flex align-items-center">--}}
-{{--                                                <div class="d-flex align-items-center text-secondary cursor-pointer">--}}
-{{--                                                    <svg class="me-1" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"--}}
-{{--                                                         stroke-linecap="round" stroke-linejoin="round" height="16" width="16"--}}
-{{--                                                         xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>--}}
-{{--                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>--}}
-{{--                                                    </svg>--}}
-{{--                                                    <span>Edit</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-                        <div class="col-lg-4 mb-4 order-lg-2">
-                            <div class="d-flex flex-column flex-sm-column flex-md-row flex-lg-row px-5 px-sm-5 px-md-0 px-lg-0">
-                                <div class="row align-items-start g-4 flex-grow-1">
-                                    <div class="col-4 text-center">
-                                        <div class="rating-value">{{$product->rating}} <span class="rating-star">★</span></div>
-
-                                        <p class="text-muted">{{$product->comment_counts}} Reviews</p>
-                                    </div>
-
-                                    <div class="col-8">
-
-                                        @foreach(range(5,1) as $star)
-
-                                            @php
-                                                $count = $ratings[$star] ?? 0;
-                                                $percent = $totalReviews ? ($count / $totalReviews) * 100 : 0;
-                                            @endphp
-
-                                            <div class="d-flex align-items-center mb-2">
-
-                                                <div class="me-2" style="width:30px;">{{ $star }}★</div>
-
-                                                <div class="flex-grow-1">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-success" style="width: {{ $percent }}%"></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="ms-2 text-muted">{{ $count }}</div>
-
-                                            </div>
-
-                                        @endforeach
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                @include('partials.reviews', ['reviews' => $reviews])
             </section>
 
         </div>

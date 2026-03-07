@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slug;
+use App\Models\Tag;
 use App\PageStatus;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,6 +22,7 @@ class SlugResolverController extends Controller
             case Product::class:
                 return $this->resolveProducts($model);
 
+            case Tag::class:
             case Category::class:
                 return $this->resolveCategories($model);
 
@@ -40,7 +43,12 @@ class SlugResolverController extends Controller
 
         $totalReviews = $ratings->sum();
 
-        return view('templates.product', compact('product', 'totalReviews', 'ratings'));
+        $reviews = $product->reviews()->published()->get();
+        $categories = $product->categories()->get();
+        $tags = $product->tags()->get();
+        $attributes = $product->attributes()->get();
+
+        return view('templates.product', compact('product', 'totalReviews', 'ratings', 'reviews', 'categories', 'tags', 'attributes'));
     }
 
     public function resolveCategories (Category $category) : View

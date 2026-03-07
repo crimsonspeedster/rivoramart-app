@@ -56,6 +56,26 @@ class Product extends Model
         );
     }
 
+    public function tags (): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Tag::class,
+            'tag_products',
+            'product_id',
+            'tag_id'
+        );
+    }
+
+    public function attributes (): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Attribute::class,
+            'attribute_products',
+            'product_id',
+            'attribute_id'
+        );
+    }
+
     public function reviews () : MorphMany
     {
         return $this->morphMany(
