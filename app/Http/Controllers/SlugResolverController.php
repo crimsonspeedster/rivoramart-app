@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Slug;
 use App\Models\Tag;
 use App\PageStatus;
+use App\ProductTypes;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -34,6 +35,7 @@ class SlugResolverController extends Controller
     public function resolveProducts (Product $product) : View
     {
         abort_unless($product->status === PageStatus::Published, 404);
+        abort_if($product->type === ProductTypes::Variable->value, 404);
 
         $ratings = $product->reviews()
             ->where('status', 'published')

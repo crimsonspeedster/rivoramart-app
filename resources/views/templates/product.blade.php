@@ -67,14 +67,17 @@
               </span>
                             </div>
                             <h1 class="h4 font-weight-semibold text-secondary">{{$product->title}}</h1>
+
+                            <h2>Product type: {{$product->type}}</h2>
+
                             <div class="my-2 d-flex align-items-center">
                                 <span class="text-primary h5 font-weight-bold">
-                                    ${{$product->price}}
+                                    ${{$product->base_price}}
                                 </span>
 
-                                @if($product->sale_price)
+                                @if($product->base_price_on_sale)
                                     <span class="text-muted ms-2">
-                                        <s>${{$product->sale_price}}</s>
+                                        <s>${{$product->base_price_on_sale}}</s>
                                     </span>
 
                                     <span class="badge badge-danger px-2 ms-2">-25% off</span>
@@ -89,70 +92,6 @@
                                 </div>
                             @endif
 
-                            <div class="my-3 size-section">
-                                <span class="font-weight-bold text-secondary">Size:</span>
-                                <div class="size-custom-radios mt-2">
-                                    <div class="size-item">
-                                        <input type="radio" id="size-s" name="size" value="s" checked="">
-                                        <label for="size-s">
-                                            <span>S</span>
-                                        </label>
-                                    </div>
-                                    <div class="size-item">
-                                        <input type="radio" id="size-m" name="size" value="m">
-                                        <label for="size-m">
-                    <span>
-                      M
-                    </span>
-                                        </label>
-                                    </div>
-                                    <div class="size-item">
-                                        <input type="radio" id="size-l" name="size" value="l">
-                                        <label for="size-l">
-                    <span>
-                      L
-                    </span>
-                                        </label>
-                                    </div>
-                                    <div class="size-item">
-                                        <input type="radio" id="size-xl" name="size" value="l">
-                                        <label for="size-xl">
-                    <span>
-                      XL
-                    </span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-3 color-section">
-                                <span class="font-weight-bold text-secondary">Colors:</span>
-                                <div class="custom-radios mt-2">
-                                    <div class="color-item">
-                                        <input type="radio" id="color-1" name="color" value="#000" checked="">
-                                        <label for="color-1">
-                    <span style="--color: #000;">
-                      <img src="./assets/images/icon/check-icn.svg" alt="Checked Icon">
-                    </span>
-                                        </label>
-                                    </div>
-                                    <div class="color-item">
-                                        <input type="radio" id="color-2" name="color" value="#f1c40f">
-                                        <label for="color-2">
-                    <span style="--color: #f1c40f;">
-                      <img src="./assets/images/icon/check-icn.svg" alt="Checked Icon">
-                    </span>
-                                        </label>
-                                    </div>
-                                    <div class="color-item">
-                                        <input type="radio" id="color-3" name="color" value="#3e74c3c">
-                                        <label for="color-3">
-                    <span style="--color: #e74c3c;">
-                      <img src="./assets/images/icon/check-icn.svg" alt="Checked Icon">
-                    </span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="my-3">
                                 <span class="font-weight-bold text-secondary">Quantity:</span>
                                 <div class="d-flex mt-2">
@@ -183,7 +122,7 @@
                                 </div>
                             @endif
 
-                            @if(!empty($categories))
+                            @if($categories->isNotEmpty())
                                 <div class="my-3 category-tag">
                                     <span class="font-weight-bold text-secondary">Category:</span>
 
@@ -199,7 +138,7 @@
                                 </div>
                             @endif
 
-                            @if(!empty($tags))
+                            @if($tags->isNotEmpty())
                                 <div class="my-3 category-tag">
                                     <span class="font-weight-bold text-secondary">Tags:</span>
 

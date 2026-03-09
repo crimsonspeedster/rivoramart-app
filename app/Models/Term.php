@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Term extends Model
 {
@@ -22,6 +23,16 @@ class Term extends Model
             Attribute::class,
             'attribute_id',
             'id'
+        );
+    }
+
+    public function products (): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'variation_terms',
+            'term_id',
+            'variation_id'
         );
     }
 }

@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'status' => $status,
             'short_description' => $this->faker->paragraph(),
             'description' => $this->faker->paragraph(3),
-            'price' => $this->faker->randomFloat(2, 1000, 5000),
+            'base_price' => $this->faker->randomFloat(2, 1000, 5000),
             'published_at' => $status === PageStatus::Published ? now() : null,
             'stock' => $stock,
             'stock_status' => $stock_status,

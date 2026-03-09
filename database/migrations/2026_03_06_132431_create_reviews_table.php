@@ -18,10 +18,7 @@ return new class extends Migration
             $table->string('entity_type');
             $table->unsignedBigInteger('entity_id');
             $table->unsignedBigInteger('user_id');
-            $table->enum('status', [
-                'draft',
-                'published',
-            ])->default('draft');
+            $table->string('status')->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
 
