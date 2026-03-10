@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
 
             foreach ($variations as $variation) {
                 $variation->terms()->attach(
-                    Term::inRandomOrder()->take(rand(1,2))->pluck('id')
+                    Term::inRandomOrder()->take(rand(1,3))->pluck('id')
                 );
             }
         }

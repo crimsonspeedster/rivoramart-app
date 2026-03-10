@@ -22,6 +22,7 @@ class Product extends Model
     protected $casts = [
         'status' => PageStatus::class,
         'stock_status' => StockStatus::class,
+        'type' => ProductTypes::class,
     ];
 
     protected $fillable = [
@@ -85,8 +86,8 @@ class Product extends Model
     {
         return $this->belongsToMany(
             Term::class,
-            'variation_terms',
-            'variation_id',
+            'term_products',
+            'product_id',
             'term_id'
         );
     }

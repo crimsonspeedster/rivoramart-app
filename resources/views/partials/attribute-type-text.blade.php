@@ -1,35 +1,15 @@
 <div class="my-3 size-section">
-    <span class="font-weight-bold text-secondary">Size:</span>
-    <div class="size-custom-radios mt-2">
-        <div class="size-item">
-            <input type="radio" id="size-s" name="size" value="s" checked="">
-            <label for="size-s">
-                <span>S</span>
-            </label>
+    <span class="font-weight-bold text-secondary">{{$data['attribute']->title}}:</span>
+
+    @if($data['terms']->isNotEmpty())
+        <div class="size-custom-radios mt-2">
+            @foreach($data['terms'] as $block)
+                <a href="{{route('slug.resolver', $block['product']->sluggable->slug)}}" class="size-item">
+                    <label>
+                        <span>{{$block['term']->title}}</span>
+                    </label>
+                </a>
+            @endforeach
         </div>
-        <div class="size-item">
-            <input type="radio" id="size-m" name="size" value="m">
-            <label for="size-m">
-                    <span>
-                      M
-                    </span>
-            </label>
-        </div>
-        <div class="size-item">
-            <input type="radio" id="size-l" name="size" value="l">
-            <label for="size-l">
-                    <span>
-                      L
-                    </span>
-            </label>
-        </div>
-        <div class="size-item">
-            <input type="radio" id="size-xl" name="size" value="l">
-            <label for="size-xl">
-                    <span>
-                      XL
-                    </span>
-            </label>
-        </div>
-    </div>
+    @endif
 </div>

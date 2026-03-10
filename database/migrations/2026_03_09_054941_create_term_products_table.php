@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('variation_terms', function (Blueprint $table) {
-            $table->unsignedBigInteger('variation_id');
+        Schema::create('term_products', function (Blueprint $table) {
+            $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('term_id');
 
-            $table->foreign('variation_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
 
-            $table->primary(['variation_id', 'term_id']);
+            $table->primary(['product_id', 'term_id']);
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('variation_terms');
+        Schema::dropIfExists('term_products');
     }
 };

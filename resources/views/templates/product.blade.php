@@ -92,6 +92,12 @@
                                 </div>
                             @endif
 
+                            @if($product->type === \App\ProductTypes::Variation && $variationMatrix->isNotEmpty())
+                                @foreach($variationMatrix as $item)
+                                    @include('partials.attribute-type-text', ['data' => $item])
+                                @endforeach
+                            @endif
+
                             <div class="my-3">
                                 <span class="font-weight-bold text-secondary">Quantity:</span>
                                 <div class="d-flex mt-2">

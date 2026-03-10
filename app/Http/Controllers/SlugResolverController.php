@@ -9,6 +9,7 @@ use App\Models\Slug;
 use App\Models\Tag;
 use App\PageStatus;
 use App\ProductTypes;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -35,22 +36,20 @@ class SlugResolverController extends Controller
     public function resolveProducts (Product $product) : View
     {
         abort_unless($product->status === PageStatus::Published, 404);
-        abort_if($product->type === ProductTypes::Variable->value, 404);
+        abort_if($product->type === ProductTypes::Variable, 404);
 
-        $ratings = $product->reviews()
-            ->where('status', 'published')
-            ->selectRaw('FLOOR(rating) as rating_int, COUNT(*) as count')
-            ->groupBy('rating_int')
-            ->pluck('count', 'rating_int');
+        $productService = new ProductService();
 
-        $totalReviews = $ratings->sum();
+        $ratings = $productService->getRatings($product);
+        $reviews = $productService->getReviews($product);
+        $ratingDistribution = $productService->getRatingDistribution($product);
+        $categories = $productService->getCategories($product);
+        $tags = $productService->getTags($product);
+        $variationMatrix = $productService->getVariationMatrix($product);
 
-        $reviews = $product->reviews()->published()->get();
-        $categories = $product->categories()->get();
-        $tags = $product->tags()->get();
-        $attributes = $product->attributes()->get();
+        $totalReviews = $ratings->isNotEmpty() ? $ratings->sum() : 0;
 
-        return view('templates.product', compact('product', 'totalReviews', 'ratings', 'reviews', 'categories', 'tags', 'attributes'));
+        return view('templates.product', compact('product', 'totalReviews', 'ratings', 'ratingDistribution', 'reviews', 'categories', 'tags', 'variationMatrix', 'totalReviews'));
     }
 
     public function resolveCategories (Category $category) : View

@@ -30,9 +30,9 @@ class Term extends Model
     {
         return $this->belongsToMany(
             Product::class,
-            'variation_terms',
+            'term_products',
             'term_id',
-            'variation_id'
+            'product_id'
         );
     }
 }

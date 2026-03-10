@@ -22,7 +22,7 @@ class SlugSeeder extends Seeder
         $tags = Tag::all();
 
         foreach ($products as $product) {
-            $base_slug = Str::slug($product->title);
+            $base_slug = 'product';
             $slug = $base_slug;
             $counter = 1;
 
@@ -38,7 +38,7 @@ class SlugSeeder extends Seeder
         }
 
         foreach ($categories as $category) {
-            $base_slug = Str::slug($category->title);
+            $base_slug = 'category';
             $slug = $base_slug;
             $counter = 1;
 
@@ -54,7 +54,7 @@ class SlugSeeder extends Seeder
         }
 
         foreach ($tags as $tag) {
-            $base_slug = Str::slug($tag->title);
+            $base_slug = 'tag';
             $slug = $base_slug;
             $counter = 1;
 

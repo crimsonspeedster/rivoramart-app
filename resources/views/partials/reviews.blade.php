@@ -21,7 +21,7 @@
 
                             @php
                                 $count = $ratings[$star] ?? 0;
-                                $percent = $totalReviews ? ($count / $totalReviews) * 100 : 0;
+                                $percent = $totalReviews > 0 ? ($count / $totalReviews) * 100 : $totalReviews;
                             @endphp
 
                             <div class="d-flex align-items-center mb-2">
