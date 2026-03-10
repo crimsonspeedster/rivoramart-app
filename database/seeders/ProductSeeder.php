@@ -2,15 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProductTypes;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use App\Models\Term;
-use App\ProductTypes;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {

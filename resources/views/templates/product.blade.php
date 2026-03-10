@@ -11,29 +11,38 @@
                             <!-- Thumbnails -->
                             <div class="thumbnail-wrapper">
                                 <div class="thumb-arrow" id="thumbUp">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5"
                                          stroke="currentColor" width="24" height="24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
                                     </svg>
                                 </div>
                                 <div class="thumbnail-container" id="thumbContainer">
                                     <div class="thumbnail active" data-image="assets/images/product/1.png"><img
                                             src="assets/images/product/1.png" alt="Product 1"></div>
-                                    <div class="thumbnail" data-image="assets/images/product/2.png"><img src="assets/images/product/2.png"
-                                                                                                         alt="Product 2"></div>
-                                    <div class="thumbnail" data-image="assets/images/product/3.png"><img src="assets/images/product/3.png"
-                                                                                                         alt="Product 3"></div>
-                                    <div class="thumbnail" data-image="assets/images/product/4.png"><img src="assets/images/product/4.png"
-                                                                                                         alt="Product 4"></div>
-                                    <div class="thumbnail" data-image="assets/images/product/5.png"><img src="assets/images/product/5.png"
-                                                                                                         alt="Product 5"></div>
-                                    <div class="thumbnail" data-image="assets/images/product/6.png"><img src="assets/images/product/6.png"
-                                                                                                         alt="Product 6"></div>
+                                    <div class="thumbnail" data-image="assets/images/product/2.png"><img
+                                            src="assets/images/product/2.png"
+                                            alt="Product 2"></div>
+                                    <div class="thumbnail" data-image="assets/images/product/3.png"><img
+                                            src="assets/images/product/3.png"
+                                            alt="Product 3"></div>
+                                    <div class="thumbnail" data-image="assets/images/product/4.png"><img
+                                            src="assets/images/product/4.png"
+                                            alt="Product 4"></div>
+                                    <div class="thumbnail" data-image="assets/images/product/5.png"><img
+                                            src="assets/images/product/5.png"
+                                            alt="Product 5"></div>
+                                    <div class="thumbnail" data-image="assets/images/product/6.png"><img
+                                            src="assets/images/product/6.png"
+                                            alt="Product 6"></div>
                                 </div>
                                 <div class="thumb-arrow" id="thumbDown">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5"
                                          stroke="currentColor" width="24" height="24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                                     </svg>
                                 </div>
                             </div>
@@ -92,7 +101,7 @@
                                 </div>
                             @endif
 
-                            @if($product->type === \App\ProductTypes::Variation && $variationMatrix->isNotEmpty())
+                            @if($product->type === \App\Enums\ProductTypes::Variation && $variationMatrix->isNotEmpty())
                                 @foreach($variationMatrix as $item)
                                     @include('partials.attribute-type-text', ['data' => $item])
                                 @endforeach
@@ -102,25 +111,30 @@
                                 <span class="font-weight-bold text-secondary">Quantity:</span>
                                 <div class="d-flex mt-2">
                                     <div class="qty-container">
-                                        <button class="qty-btn-minus count-decreament" type="button"><i class="fas fa-minus"></i></button>
+                                        <button class="qty-btn-minus count-decreament" type="button"><i
+                                                class="fas fa-minus"></i></button>
                                         <input type="number" name="qty" value="1" class="input-qty input-cornered">
-                                        <button class="qty-btn-plus count-increament" type="button"><i class="fas fa-plus"></i></button>
+                                        <button class="qty-btn-plus count-increament" type="button"><i
+                                                class="fas fa-plus"></i></button>
                                     </div>
                                     <div>
-                                        <a href="cart.html" class="btn btn-primary btn-block ms-3 py-2"><i class="fa fa-shopping-cart"></i>
+                                        <a href="cart.html" class="btn btn-primary btn-block ms-3 py-2"><i
+                                                class="fa fa-shopping-cart"></i>
                                             <span class="d-none d-md-inline-block d-lg-inline-block">Add to cart</span></a>
                                     </div>
                                     <div>
-                                        <a href="checkout.html" class="btn btn-danger btn-block ms-3 py-2"><i class="fa-solid fa-fire"></i>
+                                        <a href="checkout.html" class="btn btn-danger btn-block ms-3 py-2"><i
+                                                class="fa-solid fa-fire"></i>
                                             Buy Now</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="my-3 border-bottom pb-3">
-                                <a href="#" class="text-decoration-none"><i class="far fa-heart me-2"></i>Add to wishlist</a>
+                                <a href="#" class="text-decoration-none"><i class="far fa-heart me-2"></i>Add to
+                                    wishlist</a>
                             </div>
 
-                            @if($product->manage_stock && $product->stock_status === \App\StockStatus::InStock )
+                            @if($product->manage_stock && $product->stock_status === \App\Enums\StockStatus::InStock )
                                 <div class="my-3 d-flex align-items-center">
                                     <span class="font-weight-bold text-secondary">Available:</span>
 
@@ -133,7 +147,8 @@
                                     <span class="font-weight-bold text-secondary">Category:</span>
 
                                     @foreach($categories as $index => $category)
-                                        <a href="{{route('slug.resolver', $category->sluggable->slug)}}" class="text-primary ml-1 text-decoration-none ">
+                                        <a href="{{route('slug.resolver', $category->sluggable->slug)}}"
+                                           class="text-primary ml-1 text-decoration-none ">
                                             {{$category->title}}
 
                                             @if($index < count($categories) - 1)
@@ -149,7 +164,8 @@
                                     <span class="font-weight-bold text-secondary">Tags:</span>
 
                                     @foreach($tags as $index => $tag)
-                                        <a href="{{route('slug.resolver', $tag->sluggable->slug)}}" class="text-primary ml-1 text-decoration-none ">
+                                        <a href="{{route('slug.resolver', $tag->sluggable->slug)}}"
+                                           class="text-primary ml-1 text-decoration-none ">
                                             {{$tag->title}}
 
                                             @if($index < count($tags) - 1)
@@ -190,16 +206,20 @@
                                 <!-- nav item -->
                                 <li class="nav-item">
                                     <!-- btn -->
-                                    <a class="nav-link active" id="product-tab1" data-bs-toggle="tab" data-bs-target="#product-tab-panel-1"
-                                       href="#product-tab-panel-1" role="tab" aria-controls="product-tab-pane" aria-selected="true">
+                                    <a class="nav-link active" id="product-tab1" data-bs-toggle="tab"
+                                       data-bs-target="#product-tab-panel-1"
+                                       href="#product-tab-panel-1" role="tab" aria-controls="product-tab-pane"
+                                       aria-selected="true">
                                         Product Details
                                     </a>
                                 </li>
                                 <!-- nav item -->
                                 <li class="nav-item">
                                     <!-- btn -->
-                                    <a class="nav-link" id="product-tab2" data-bs-toggle="tab" data-bs-target="#product-tab-panel-2"
-                                       href="#product-tab-panel-2" role="tab" aria-controls="product-tab-pane" aria-selected="true">
+                                    <a class="nav-link" id="product-tab2" data-bs-toggle="tab"
+                                       data-bs-target="#product-tab-panel-2"
+                                       href="#product-tab-panel-2" role="tab" aria-controls="product-tab-pane"
+                                       aria-selected="true">
                                         More Information
                                     </a>
                                 </li>
@@ -210,18 +230,27 @@
                                 <div class="tab-pane fade show active" id="product-tab-panel-1" role="tabpanel"
                                      aria-labelledby="product-tab" tabindex="0">
                                     <div class="my-4">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo assumenda asperiores atque nisi
-                                            ipsa deleniti similique? Neque esse voluptate ipsa, sunt quas delectus amet vitae dignissimos
-                                            incidunt nisi asperiores vel placeat cum quidem. Quasi voluptatem, recusandae quod eos deserunt
-                                            animi libero optio totam labore officiis minus illo nemo maxime, sequi, magni voluptate nostrum
-                                            aspernatur aperiam amet tempora possimus. Nisi aut, consectetur soluta culpa quos eius nostrum
-                                            inventore. Officia quaerat cupiditate molestiae nihil. Eos sequi consectetur sapiente officiis sed.
-                                            Minus, nostrum sequi? Id quaerat explicabo voluptatibus dolorum accusamus quis ipsam animi nostrum
-                                            similique. Nobis, temporibus possimus laboriosam repellendus in excepturi?</p>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quo assumenda
+                                            asperiores atque nisi
+                                            ipsa deleniti similique? Neque esse voluptate ipsa, sunt quas delectus amet
+                                            vitae dignissimos
+                                            incidunt nisi asperiores vel placeat cum quidem. Quasi voluptatem,
+                                            recusandae quod eos deserunt
+                                            animi libero optio totam labore officiis minus illo nemo maxime, sequi,
+                                            magni voluptate nostrum
+                                            aspernatur aperiam amet tempora possimus. Nisi aut, consectetur soluta culpa
+                                            quos eius nostrum
+                                            inventore. Officia quaerat cupiditate molestiae nihil. Eos sequi consectetur
+                                            sapiente officiis sed.
+                                            Minus, nostrum sequi? Id quaerat explicabo voluptatibus dolorum accusamus
+                                            quis ipsam animi nostrum
+                                            similique. Nobis, temporibus possimus laboriosam repellendus in
+                                            excepturi?</p>
                                     </div>
                                 </div>
                                 <!-- tab pane -->
-                                <div class="tab-pane fade" id="product-tab-panel-2" role="tabpanel" aria-labelledby="product-tab"
+                                <div class="tab-pane fade" id="product-tab-panel-2" role="tabpanel"
+                                     aria-labelledby="product-tab"
                                      tabindex="0">
                                     <div class="my-4">
                                         <div class="row">
@@ -282,7 +311,8 @@
                                 <span class="badge-new bg-danger">Out of stock</span>
                                 <span class="wishlist-icon"><i class="fas fa-heart"></i></span>
                                 <a href="shop-single.html">
-                                    <img src="assets/images/product/4.png" class="img-fluid mb-2 product-img" alt="product">
+                                    <img src="assets/images/product/4.png" class="img-fluid mb-2 product-img"
+                                         alt="product">
                                 </a>
                                 <h6><a href="shop-single.html">Lenovo Vibe S1 Lite</a></h6>
                                 <div class="rating">
@@ -305,7 +335,8 @@
                             <div class="product-card">
                                 <span class="wishlist-icon"><i class="fas fa-heart"></i></span>
                                 <a href="shop-single.html">
-                                    <img src="assets/images/product/2.png" class="img-fluid mb-2 product-img" alt="product">
+                                    <img src="assets/images/product/2.png" class="img-fluid mb-2 product-img"
+                                         alt="product">
                                 </a>
                                 <h6><a href="shop-single.html">Mouse Lenovo</a></h6>
                                 <div class="rating">
@@ -327,7 +358,8 @@
                             <div class="product-card">
                                 <span class="wishlist-icon"><i class="fas fa-heart"></i></span>
                                 <a href="shop-single.html">
-                                    <img src="assets/images/product/5.png" class="img-fluid mb-2 product-img" alt="product">
+                                    <img src="assets/images/product/5.png" class="img-fluid mb-2 product-img"
+                                         alt="product">
                                 </a>
                                 <h6><a href="shop-single.html">MI head phone</a></h6>
                                 <div class="rating">
@@ -350,7 +382,8 @@
                                 <span class="badge-new bg-danger">Out of stock</span>
                                 <span class="wishlist-icon"><i class="fas fa-heart"></i></span>
                                 <a href="shop-single.html">
-                                    <img src="assets/images/product/6.png" class="img-fluid mb-2 product-img" alt="product">
+                                    <img src="assets/images/product/6.png" class="img-fluid mb-2 product-img"
+                                         alt="product">
                                 </a>
                                 <h6><a href="shop-single.html">Back cover for mi</a></h6>
                                 <div class="rating">
@@ -373,7 +406,8 @@
                                 <span class="badge-new bg-danger">Out of stock</span>
                                 <span class="wishlist-icon"><i class="fas fa-heart"></i></span>
                                 <a href="shop-single.html">
-                                    <img src="assets/images/product/7.png" class="img-fluid mb-2 product-img" alt="product">
+                                    <img src="assets/images/product/7.png" class="img-fluid mb-2 product-img"
+                                         alt="product">
                                 </a>
                                 <h6><a href="shop-single.html">Lenovo Vibe S1 Lite</a></h6>
                                 <div class="rating">
@@ -404,7 +438,8 @@
                         Reviews ({{$product->comment_counts}})
                     </h2>
                     <div>
-                        <a href="#" class="btn btn-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                        <a href="#" class="btn btn-primary text-decoration-none" data-bs-toggle="modal"
+                           data-bs-target="#reviewModal">
                             <svg class="me-1" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                                  stroke-linecap="round" stroke-linejoin="round" height="16" width="16"
                                  xmlns="http://www.w3.org/2000/svg">

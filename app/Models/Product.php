@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\PageStatus;
-use App\ProductTypes;
-use App\StockStatus;
+use App\Enums\PageStatus;
+use App\Enums\ProductTypes;
+use App\Enums\StockStatus;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

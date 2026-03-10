@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\PageStatus;
 use App\Models\Product;
-use App\Models\User;
-use App\PageStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

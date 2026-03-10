@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\AttributeTypes;
+use App\Enums\AttributeTypes;
 use App\Models\Attribute;
 use App\Models\Term;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 

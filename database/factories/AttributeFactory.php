@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\AttributeTypes;
+use App\Enums\AttributeTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

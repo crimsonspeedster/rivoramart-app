@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Enums\ProductTypes;
 use App\Models\Product;
-use App\ProductTypes;
 use Illuminate\Support\Collection;
 
 class ProductService

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attribute;
+use App\Enums\PageStatus;
+use App\Enums\ProductTypes;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slug;
 use App\Models\Tag;
-use App\PageStatus;
-use App\ProductTypes;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class SlugResolverController extends Controller

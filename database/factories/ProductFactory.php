@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\PageStatus;
-use App\StockStatus;
+use App\Enums\PageStatus;
+use App\Enums\StockStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
