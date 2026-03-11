@@ -23,6 +23,7 @@ class Product extends Model
         'status' => PageStatus::class,
         'stock_status' => StockStatus::class,
         'type' => ProductTypes::class,
+        'published_at' => 'datetime',
     ];
 
     protected $fillable = [
@@ -121,10 +122,47 @@ class Product extends Model
         );
     }
 
+    public function related (): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'related_products',
+            'product_id',
+            'related_product_id'
+        );
+    }
+
+    public function price(): float
+    {
+        if ($this->base_price_on_sale !== null) {
+            return $this->base_price_on_sale;
+        }
+
+        return $this->base_price;
+    }
+
+    public function isPublished(): bool
+    {
+        if ($this->type === ProductTypes::Variable) return false;
+
+        $base = $this->type === ProductTypes::Variation && $this->parent ? $this->parent : $this;
+
+        return $base->status === PageStatus::Published;
+    }
+
     #[Scope]
     protected function scopePublished (Builder $query)
     {
-        return $query->where('status', '=', PageStatus::Published);
+        return $query->where(function ($q) {
+            $q->where('type', '!=', ProductTypes::Variation)
+                ->where('status', '=', PageStatus::Published);
+        })
+            ->orWhere(function ($q) {
+                $q->where('type', '=', ProductTypes::Variation)
+                    ->whereHas('parent', function ($parent) {
+                        $parent->where('status', '=', PageStatus::Published);
+                    });
+            });
     }
 
     #[Scope]

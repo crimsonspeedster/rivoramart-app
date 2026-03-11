@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Slug;
 use App\Models\Tag;
@@ -20,6 +21,23 @@ class SlugSeeder extends Seeder
         $products = Product::all();
         $categories = Category::all();
         $tags = Tag::all();
+        $pages = Page::all();
+
+        foreach ($pages as $page) {
+            $base_slug = 'page';
+            $slug = $base_slug;
+            $counter = 1;
+
+            while (Slug::where('slug', $slug)->exists()) {
+                $slug = $base_slug . '-' . $counter++;
+            }
+
+            Slug::factory()->create([
+                'entity_id' => $page->id,
+                'entity_type' => Page::class,
+                'slug' => $slug,
+            ]);
+        }
 
         foreach ($products as $product) {
             $base_slug = 'product';

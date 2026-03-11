@@ -59,6 +59,12 @@ class ProductSeeder extends Seeder
                 );
             }
         }
+
+        $allProducts = Product::all();
+
+        foreach ($allProducts as $product) {
+            $this->attachRelatedProducts($product);
+        }
     }
 
     private function attachRelations(Product $product): void
@@ -74,5 +80,15 @@ class ProductSeeder extends Seeder
         $product->attributes()->attach(
             Attribute::inRandomOrder()->take(rand(1,3))->pluck('id')
         );
+    }
+
+    private function attachRelatedProducts(Product $product): void
+    {
+        $relatedIds = Product::where('id', '!=', $product->id)
+            ->inRandomOrder()
+            ->take(rand(1, 3))
+            ->pluck('id');
+
+        $product->related()->syncWithoutDetaching($relatedIds);
     }
 }

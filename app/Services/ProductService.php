@@ -8,6 +8,16 @@ use Illuminate\Support\Collection;
 
 class ProductService
 {
+    public function transformProduct (Product $product) : array
+    {
+        $ratings = $this->getRatings($product);
+
+        return [
+            'product' => $product,
+            'ratings' => $ratings,
+        ];
+    }
+
     public function getCategories(Product $product) : Collection
     {
         $baseProduct = $product->type === ProductTypes::Variation

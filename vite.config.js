@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/assets/plugin/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css',
                 'resources/assets/plugin/nouislider/nouislider.min.css',
                 'resources/assets/css/style.css',
+                'resources/assets/js/back.js',
             ],
             refresh: true,
         }),

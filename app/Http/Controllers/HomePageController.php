@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class HomePageController extends Controller
+{
+    public function show () : View
+    {
+        return view('welcome');
+    }
+}

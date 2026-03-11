@@ -2,5 +2,5 @@
 
 
 @section('main')
-    <h1>Product Category</h1>
+    <h1>Product Archive</h1>
 @endsection

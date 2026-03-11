@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TermSeeder::class,
             ProductSeeder::class,
             ReviewSeeder::class,
+            PageSeeder::class,
             SlugSeeder::class,
         ]);
     }
